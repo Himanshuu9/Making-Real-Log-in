@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+</head>
+<body class="bg-light">
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4 shadow animate__animated animate__fadeIn">
+            <h2 class="text-center mb-4">Sign Up</h2>
+            <div id="register-section">
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group position-relative">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required oninput="checkPasswordStrength()">
+                        <span class="position-absolute" style="right: 10px; top: 70%; transform: translateY(-50%); cursor: pointer;" onclick="togglePassword('password', 'toggle-password-icon')">
+                            <i id="toggle-password-icon" class="fa fa-eye"></i>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <div id="password-strength">
+                            <div id="strength-bar"></div>
+                            <div id="strength-text" class="text-center">Strength: <span id="strength-indicator" class="text-muted">Weak</span></div>
+                        </div>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
+                        <label class="form-check-label" for="terms">I agree to the <a href="#">terms and conditions</a></label>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" onclick="showOtpSection()">Register</button>
+                    <div class="text-center mt-3">
+                        <div id="g_id_onload"
+                             data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                             data-callback="handleCredentialResponse">
+                        </div>
+                        <div class="g_id_signin" data-type="standard"></div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- OTP Section -->
+            <div id="otp-section" style="display: none;">
+                <h2 class="text-center mb-4">Verify OTP</h2>
+                <form id="otp-form">
+                    <div class="otp-inputs d-flex justify-content-between">
+                        <input type="text" class="form-control otp-input" maxlength="1" oninput="moveToNext(this, 1)" />
+                        <input type="text" class="form-control otp-input" maxlength="1" oninput="moveToNext(this, 2)" />
+                        <input type="text" class="form-control otp-input" maxlength="1" oninput="moveToNext(this, 3)" />
+                        <input type="text" class="form-control otp-input" maxlength="1" oninput="moveToNext(this, 4)" />
+                        <input type="text" class="form-control otp-input" maxlength="1" oninput="moveToNext(this, 5)" />
+                        <input type="text" class="form-control otp-input" maxlength="1" oninput="moveToNext(this, 6)" />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block mt-3">Verify OTP</button>
+                </form>
+                <p class="text-center mt-3">Didn't receive the OTP? <a href="#">Resend</a></p>
+            </div>
+            <p class="text-center mt-3">Already have an account? <a href="login.html">Sign In</a></p>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
